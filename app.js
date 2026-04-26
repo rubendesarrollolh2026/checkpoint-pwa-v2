@@ -1,4 +1,4 @@
-const PIN="24493739";
+const PIN="24493739G";
 
 let autorizado=
 sessionStorage.getItem("autorizado")==="si";
