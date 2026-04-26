@@ -1,23 +1,16 @@
-const PIN="24493739G";
-
-let autorizado=
-sessionStorage.getItem("autorizado_v3")==="si";
-
-if(!autorizado){
-
 let p=prompt("Introduce PIN");
 
-if(p!==PIN){
-document.body.innerHTML="<h2>Acceso denegado</h2>";
+if(
+p!=="24493739"
+){
+
+document.body.innerHTML=
+"<h2>Acceso denegado</h2>";
+
 throw new Error("PIN");
-}
-
-sessionStorage.setItem(
-"autorizado_v3",
-"si"
-);
 
 }
+
 
 
 if('serviceWorker' in navigator){
@@ -25,8 +18,10 @@ navigator.serviceWorker.register('sw.js');
 }
 
 
+
 const WEBHOOK=
 "https://script.google.com/macros/s/AKfycbxe-XZhSXt7_vAOvnOVJk-tFw3cpPRtH62nDjrkZxWz6W2OVRFalyW-a2kTw1luLZDjvA/exec";
+
 
 
 let entradaAbierta=false;
@@ -270,19 +265,12 @@ prompt(
 enviar({
 
 tipo:"parte",
-
 fecha:horaCompleta(),
-
 companero:companero,
-
 vehiculo:vehiculo,
-
 trabajo:trabajo,
-
 materiales:materiales,
-
 obs:obs,
-
 secret:"checkpoint2026"
 
 });
