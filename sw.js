@@ -1,13 +1,11 @@
-const CACHE="checkpoint-v7";
+const CACHE="checkpoint-v99";
 
 const FILES=[
-"/checkpoint-pwa/",
-"/checkpoint-pwa/index.html",
-"/checkpoint-pwa/style.css",
-"/checkpoint-pwa/app.js",
-"/checkpoint-pwa/manifest.json",
-"/checkpoint-pwa/assets/icon-192.png",
-"/checkpoint-pwa/assets/icon-512.png"
+"/checkpoint-pwa-v2/",
+"/checkpoint-pwa-v2/index.html",
+"/checkpoint-pwa-v2/style.css",
+"/checkpoint-pwa-v2/app-v2.js",
+"/checkpoint-pwa-v2/manifest.json"
 ];
 
 
@@ -22,6 +20,7 @@ caches.open(CACHE)
 .then(cache=>
 cache.addAll(FILES)
 )
+
 );
 
 }
@@ -32,6 +31,21 @@ cache.addAll(FILES)
 self.addEventListener(
 "activate",
 e=>{
+
+e.waitUntil(
+caches.keys()
+.then(keys=>
+Promise.all(
+keys.map(
+k=>{
+if(k!==CACHE){
+return caches.delete(k);
+}
+}
+)
+)
+)
+);
 
 clients.claim();
 
@@ -45,11 +59,11 @@ self.addEventListener(
 e=>{
 
 e.respondWith(
-caches.match(
+fetch(e.request)
+.catch(
+()=>caches.match(
 e.request
 )
-.then(
-r=>r || fetch(e.request)
 )
 );
 
