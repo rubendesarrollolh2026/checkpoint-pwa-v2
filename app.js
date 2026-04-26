@@ -1,7 +1,7 @@
 const PIN="24493739G";
 
 let autorizado=
-sessionStorage.getItem("autorizado")==="si";
+sessionStorage.getItem("autorizado_v3")==="si";
 
 if(!autorizado){
 
@@ -13,7 +13,7 @@ throw new Error("PIN");
 }
 
 sessionStorage.setItem(
-"autorizado",
+"autorizado_v3",
 "si"
 );
 
